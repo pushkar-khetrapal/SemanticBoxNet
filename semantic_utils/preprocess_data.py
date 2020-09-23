@@ -94,8 +94,8 @@ train_dirs = ["jena/", "zurich/", "weimar/", "ulm/", "tubingen/", "stuttgart/",
 val_dirs = ["frankfurt/", "munster/", "lindau/"]
 test_dirs = ["berlin", "bielefeld", "bonn", "leverkusen", "mainz", "munich"]
 
-cityscapes_data_path = "/content/SemanticNet/data/cityscapes"
-cityscapes_meta_path = "/content/SemanticNet/data/cityscapes/meta"
+cityscapes_data_path = "/content/EfficientDet_Panoptic/data/cityscapes"
+cityscapes_meta_path = "/content/EfficientDet_Panoptic/data/cityscapes/meta"
 
 if not os.path.exists(cityscapes_meta_path):
     os.makedirs(cityscapes_meta_path)
