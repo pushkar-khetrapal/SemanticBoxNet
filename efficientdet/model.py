@@ -358,7 +358,7 @@ class BiFPN2(nn.Module):
             epsilon: epsilon of fast weighted attention sum of BiFPN, not the BN's epsilon
             onnx_export: if True, use Swish instead of MemoryEfficientSwish
         """
-        super(BiFPN, self).__init__()
+        super(BiFPN2, self).__init__()
         self.epsilon = epsilon
         self.use_p8 = use_p8
 
