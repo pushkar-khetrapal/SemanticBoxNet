@@ -116,7 +116,7 @@ class SeparableConvBlock(nn.Module):
 class LSFE(nn.Module):
     def __init__(self, ):
         super(LSFE, self).__init__()
-        self.conv1 = SeparableConvBlock(64, 256)
+        self.conv1 = SeparableConvBlock(88, 256)
         self.conv2 = SeparableConvBlock(256, 256)
         
     def forward(self, x):
@@ -149,7 +149,7 @@ class DPC(nn.Module):
         self.height = height
         self.width = width
 
-        self.conv1 = SeparableConvBlock(64, 256, 3, dilation=(1, 6))
+        self.conv1 = SeparableConvBlock(88, 256, 3, dilation=(1, 6))
         self.up1 = nn.Upsample((self.height, self.width), mode='bilinear')
 
         self.conv2 = SeparableConvBlock(256, 256, 3, dilation=(1, 1))

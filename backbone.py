@@ -3,7 +3,7 @@
 import torch
 from torch import nn
 
-from efficientdet.model import BiFPN, Regressor, Classifier, EfficientNet
+from efficientdet.model import BiFPN, BiFPN2, Regressor, Classifier, EfficientNet
 from efficientdet.utils import Anchors
 from efficientdet.semantichead import SemanticHead
 
@@ -62,7 +62,7 @@ class EfficientDetBackbone(nn.Module):
         self.semhead = SemanticHead()
 
         self.bifpn2 = nn.Sequential(
-            *[BiFPN(self.fpn_num_filters[self.compound_coef],
+            *[BiFPN2(self.fpn_num_filters[self.compound_coef],
                     conv_channel_coef[compound_coef],
                     True if _ == 0 else False,
                     attention=True if compound_coef < 6 else False,
@@ -81,7 +81,7 @@ class EfficientDetBackbone(nn.Module):
 
         features = (p3, p4, p5)
         seg_fea = self.bifpn2(features)
-        sem_out = self.semhead(seg_fea[0], seg_fea[1], seg_fea[2])
+        sem_out = self.semhead(seg_fea[2], seg_fea[1], seg_fea[0])
 
         features = self.bifpn1(features)
         regression = self.regressor(features)
