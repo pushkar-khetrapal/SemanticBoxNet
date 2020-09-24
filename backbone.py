@@ -9,7 +9,7 @@ from efficientdet.semantichead import SemanticHead
 
 class EfficientDet_semanticBackbone(nn.Module):
     def __init__(self, num_classes=80, compound_coef=0, load_weights=False, **kwargs):
-        super(EfficientDetBackbone, self).__init__()
+        super(EfficientDet_semanticBackbone, self).__init__()
         self.compound_coef = compound_coef
 
         self.backbone_compound_coef = [0, 1, 2, 3, 4, 5, 6, 6, 7]
