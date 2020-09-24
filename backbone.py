@@ -7,7 +7,7 @@ from efficientdet.model import BiFPN, BiFPN2, Regressor, Classifier, EfficientNe
 from efficientdet.utils import Anchors
 from efficientdet.semantichead import SemanticHead
 
-class EfficientDetBackbone(nn.Module):
+class EfficientDet_semanticBackbone(nn.Module):
     def __init__(self, num_classes=80, compound_coef=0, load_weights=False, **kwargs):
         super(EfficientDetBackbone, self).__init__()
         self.compound_coef = compound_coef
