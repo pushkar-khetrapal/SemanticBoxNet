@@ -36,7 +36,7 @@ class EfficientDet_semanticBackbone(nn.Module):
 
         num_anchors = len(self.aspect_ratios) * self.num_scales
 
-        self.bifpn1 = nn.Sequential(
+        self.bifpn = nn.Sequential(
             *[BiFPN(self.fpn_num_filters[self.compound_coef],
                     conv_channel_coef[compound_coef],
                     True if _ == 0 else False,
@@ -83,7 +83,7 @@ class EfficientDet_semanticBackbone(nn.Module):
         seg_fea = self.bifpn2(features)
         sem_out = self.semhead(seg_fea[2], seg_fea[1], seg_fea[0])
 
-        features = self.bifpn1(features)
+        features = self.bifpn(features)
         regression = self.regressor(features)
         classification = self.classifier(features)
         anchors = self.anchors(inputs, inputs.dtype)
@@ -131,7 +131,7 @@ class EfficientDetBackbone(nn.Module):
 
         num_anchors = len(self.aspect_ratios) * self.num_scales
 
-        self.bifpn1 = nn.Sequential(
+        self.bifpn = nn.Sequential(
             *[BiFPN(self.fpn_num_filters[self.compound_coef],
                     conv_channel_coef[compound_coef],
                     True if _ == 0 else False,
