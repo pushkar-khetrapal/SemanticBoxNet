@@ -713,7 +713,6 @@ class Classifier(nn.Module):
 
         return feats
 
-
 class EfficientNet(nn.Module):
     """
     modified by Zylo117
