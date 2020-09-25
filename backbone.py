@@ -131,7 +131,7 @@ class EfficientDetBackbone(nn.Module):
 
         num_anchors = len(self.aspect_ratios) * self.num_scales
 
-        self.bifpn = nn.Sequential(
+        self.bifpn1 = nn.Sequential(
             *[BiFPN(self.fpn_num_filters[self.compound_coef],
                     conv_channel_coef[compound_coef],
                     True if _ == 0 else False,
