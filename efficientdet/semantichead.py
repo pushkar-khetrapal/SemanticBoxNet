@@ -222,7 +222,7 @@ class SemanticHead(nn.Module):
         self.last1 = nn.Conv2d(768, 256, 1)
         self.last2 = nn.Conv2d(256, 20, 1) ####### NEED TO CHANGE OUTPUT CHANNELS
         self.uplast1 = nn.Upsample((512, 512), mode = 'bilinear')
-        self.uplast2 = nn.Upsample((768, 768), mode = 'bilinear')
+        self.uplast2 = nn.Upsample((512, 1024), mode = 'bilinear')
     
     
     def forward(self, p32, p16, p8):
