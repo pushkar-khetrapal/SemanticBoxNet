@@ -94,7 +94,7 @@ class DatasetTrain(torch.utils.data.Dataset):
 
         label_img_path = example["label_img_path"]
         label_img = cv2.imread(label_img_path, -1) # (shape: (1024, 2048))
-        label_img = cv2.resize(label_img, (768, 768),interpolation=cv2.INTER_NEAREST) # (shape: (512, 1024))
+        label_img = cv2.resize(label_img, (1024, 512),interpolation=cv2.INTER_NEAREST) # (shape: (512, 1024))
 
         label_img = torch.from_numpy(label_img) # (shape: (256, 256))
 
@@ -160,7 +160,7 @@ class DatasetVal(torch.utils.data.Dataset):
         label_img = cv2.imread(label_img_path, -1) # (shape: (1024, 2048))
         # resize label_img without interpolation (want the resulting image to
         # still only contain pixel values corresponding to an object class):
-        label_img = cv2.resize(label_img, (768, 768), interpolation=cv2.INTER_NEAREST) # (shape: (512, 1024))
+        label_img = cv2.resize(label_img, (1024, 512), interpolation=cv2.INTER_NEAREST) # (shape: (512, 1024))
 
         label_img = torch.from_numpy(label_img) # (shape: (512, 1024))
 
