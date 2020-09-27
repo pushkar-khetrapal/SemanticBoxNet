@@ -118,11 +118,15 @@ class LSFE(nn.Module):
         super(LSFE, self).__init__()
         self.conv1 = SeparableConvBlock(88, 256)
         self.conv2 = SeparableConvBlock(256, 256)
+        self.conv3 = SeparableConvBlock(256, 256)
+        self.conv4 = SeparableConvBlock(256, 256)
+
         
     def forward(self, x):
         x = self.conv1(x)
         x = self.conv2(x)
-
+        x = self.conv3(x)
+        x = self.conv4(x)
         
         return x
 
@@ -132,12 +136,18 @@ class CorrectionModule(nn.Module):
         super(CorrectionModule, self).__init__()
         self.conv1 = SeparableConvBlock(256, 256)
         self.conv2 = SeparableConvBlock(256, 256)
+        self.conv3 = SeparableConvBlock(256, 256)
+        self.conv4 = SeparableConvBlock(256, 256)
+        self.conv5 = SeparableConvBlock(256, 256)
         self.up = nn.Upsample(scale_factor=2, mode='bilinear')
         ## upsampling 
 
     def forward(self, x):
         x = self.conv1(x)
         x = self.conv2(x)
+        x = self.conv3(x)
+        x = self.conv4(x)
+        x = self.conv5(x)
         x = self.up(x)
         return x
 
