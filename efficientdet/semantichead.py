@@ -214,13 +214,30 @@ class SemanticHead(nn.Module):
         self.up_p32_2 = nn.Upsample((96, 96), mode='bilinear')
         self.up_p32_3 = nn.Upsample((256, 256), mode='bilinear')
 
-        self.conv1_32 = SeparableConvBlock(256, 256, 3)
-        self.conv2_32 = SeparableConvBlock(256, 256, 3)
+        self.conv1_32_1 = SeparableConvBlock(256, 256, 3)
+        self.conv1_32_2 = SeparableConvBlock(256, 256, 3)
+        self.conv1_32_3 = SeparableConvBlock(256, 256, 3)
+        self.conv1_32_4 = SeparableConvBlock(256, 256, 3)
+        
+        self.conv2_32_1 = SeparableConvBlock(256, 256, 3)
+        self.conv2_32_2 = SeparableConvBlock(256, 256, 3)
+        self.conv2_32_3 = SeparableConvBlock(256, 256, 3)
+        self.conv2_32_4 = SeparableConvBlock(256, 256, 3)
 
         self.conv1_8 = SeparableConvBlock(256, 256, 3)
+        self.conv2_8 = SeparableConvBlock(256, 256, 3)
+        self.conv3_8 = SeparableConvBlock(256, 256, 3)
+        self.conv4_8 = SeparableConvBlock(256, 256, 3)
         
-        self.conv1_16 = SeparableConvBlock(256, 256, 3)
-        self.conv2_16 = SeparableConvBlock(256, 256, 3)
+        self.conv1_16_1 = SeparableConvBlock(256, 256, 3)
+        self.conv1_16_2 = SeparableConvBlock(256, 256, 3)
+        self.conv1_16_3 = SeparableConvBlock(256, 256, 3)
+        self.conv1_16_4 = SeparableConvBlock(256, 256, 3)
+
+        self.conv2_16_1 = SeparableConvBlock(256, 256, 3)
+        self.conv2_16_2 = SeparableConvBlock(256, 256, 3)
+        self.conv2_16_3 = SeparableConvBlock(256, 256, 3)
+        self.conv2_16_4 = SeparableConvBlock(256, 256, 3)
 
         self.mc1 = CorrectionModule()
 
@@ -229,7 +246,10 @@ class SemanticHead(nn.Module):
 
         self.up_p8_1 = nn.Upsample((256, 256), mode='bilinear')
 
-        self.last1 = nn.Conv2d(768, 256, 1)
+        self.last1_1 = nn.Conv2d(768, 256, 1)
+        self.last1_2 = nn.Conv2d(256, 256, 3)
+        self.last1_3 = nn.Conv2d(256, 256, 3)
+        self.last1_4 = nn.Conv2d(256, 256, 3)
         self.last2 = nn.Conv2d(256, 20, 1) ####### NEED TO CHANGE OUTPUT CHANNELS
         self.uplast1 = nn.Upsample((512, 512), mode = 'bilinear')
         self.uplast2 = nn.Upsample((512, 1024), mode = 'bilinear')
@@ -248,23 +268,43 @@ class SemanticHead(nn.Module):
         up16 = self.mc1(add1)
         add2 = torch.add(up16, lp8)
         conv_8 = self.conv1_8(add2)
+        conv_8 = self.conv2_8(conv_8)
+        conv_8 = self.conv3_8(conv_8)
+        conv_8 = self.conv4_8(conv_8)
         cat3 = self.up_p8_1(conv_8)
 
         #to calculate p32
-        conv1_32_ = self.conv1_32(up32)
+        conv1_32_ = self.conv1_32_1(up32)
+        conv1_32_ = self.conv1_32_2(conv1_32_)
+        conv1_32_ = self.conv1_32_3(conv1_32_)
+        conv1_32_ = self.conv1_32_4(conv1_32_)
+
         conv1_32_ = self.up_p32_2(conv1_32_)
-        conv2_32_ = self.conv2_32(conv1_32_)
+        conv2_32_ = self.conv2_32_1(conv1_32_)
+        conv2_32_ = self.conv2_32_2(conv2_32_)
+        conv2_32_ = self.conv2_32_3(conv2_32_)
+        conv2_32_ = self.conv2_32_4(conv2_32_)
         cat1 = self.up_p32_3(conv2_32_)
 
         #to calculate p16
-        conv1_16_ = self.conv1_16(d16)
+        conv1_16_ = self.conv1_16_1(d16)
+        conv1_16_ = self.conv1_16_2(conv1_16_)
+        conv1_16_ = self.conv1_16_3(conv1_16_)
+        conv1_16_ = self.conv1_16_4(conv1_16_)
         conv1_16_ = self.up_p16_1(conv1_16_)
-        conv2_16_ = self.conv2_16(conv1_16_)
+        
+        conv2_16_ = self.conv2_16_1(conv1_16_)
+        conv2_16_ = self.conv2_16_2(conv2_16_)
+        conv2_16_ = self.conv2_16_3(conv2_16_)
+        conv2_16_ = self.conv2_16_4(conv2_16_)
         cat2 = self.up_p16_2(conv2_16_)
 
         cat = torch.cat(( cat1, cat2, cat3), dim = 1)
 
-        cat = self.last1(cat)
+        cat = self.last1_1(cat)
+        cat = self.last1_2(cat)
+        cat = self.last1_3(cat)
+        cat = self.last1_4(cat)
         cat = self.uplast1(cat)
         cat = self.last2(cat)
         cat = self.uplast2(cat)
