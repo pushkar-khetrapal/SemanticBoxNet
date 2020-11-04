@@ -19,8 +19,26 @@ The proposed semantic segmentation head consists of three components, each aimed
 4. Optimizing it further with Nvidia TensorRT.
 
 ## Training
-I used Pre-trained weights from EfficientDet algorithm and train semantic head only. I trained it for 80 epoches, about 53 hours on Google Colab(one, k-80 GPU) on CityScapes dataset till now. The accuracy is still improving need long training to get good results. Current accuracy of semantic is 66.1 mIoU.
+I used Pre-trained weights from EfficientDet algorithm and train semantic head only. I trained it for 80 epoches, about 53 hours on Google Colab(one, k-80 GPU) on CityScapes dataset till now. 
 
+## Accuracy
+### Bounding Boxes (Results are same as in EfficientDet-d1)
+efficientdet-d1
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.388
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.577
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.413
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.189
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.441
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.564
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.312
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.480
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.513
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.287
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.580
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.699
+
+### Semantic Output
+Current accuracy of semantic is 66.1 mIoU. The accuracy is still improving need long training to get good results. 
 ## Outputs
 
 <p float="left">
