@@ -24,16 +24,16 @@ I used Pre-trained weights from EfficientDet algorithm and train semantic head o
 ## Outputs
 
 <p float="left">
-  <img src="/media/original_img.jpg" width="32%" />
-  <img src="/media/original_img1.jpg" width="32%" />
-  <img src="/media/original_img2.jpg" width="32%" />
-  <img src="/media/original_img3.jpg" width="32%" />
-</p>
-<img src="/media/semantic_img_12.jpg" width="96%">
-<img src="/media/semantic_img_13.jpg" width="96%">
-<img src="/media/semantic_img_14.jpg" width="96%">
-<img src="/media/semantic_img_15.jpg" width="96%">
+  <img src="/media/original_img.jpg" width="50%" />
+  <img src="/media/semantic_img_12.jpg" width="50%">
+  <img src="/media/original_img1.jpg" width="50%" />
+  <img src="/media/semantic_img_13.jpg" width="50%">
+  <img src="/media/original_img2.jpg" width="50%" />
+  <img src="/media/semantic_img_14.jpg" width="50%">
+  <img src="/media/original_img3.jpg" width="50%" />
+  <img src="/media/semantic_img_15.jpg" width="50%">
 
+</p>
 ## How to use
 
 
