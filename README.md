@@ -88,6 +88,6 @@ python sembox_inference.py
 ```
 ##### See output at test/semantic_img{}.jpg
 
-## Collaboration
+## Contributing
 
-We appreciate all contributions. If you are planning to contribute back bug-fixes, please do so without any further discussion. If you plan to contribute new features, utility functions or extensions, please first open an issue and discuss the feature with us.
+If you find a bug, create a GitHub issue, or even better, submit a pull request. Similarly, if you have questions, simply post them as GitHub issues.
