@@ -50,8 +50,8 @@ Current accuracy of semantic is 66.1 mIoU. The accuracy is still improving need 
   <img src="/media/semantic_img_14.jpg" width="48%">
   <img src="/media/original_img3.jpg" width="48%" />
   <img src="/media/semantic_img_15.jpg" width="48%">
-
 </p>
+
 ## How to use
 
 
