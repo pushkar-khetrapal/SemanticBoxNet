@@ -3,4 +3,3 @@ cd EfficientDet_Panoptic
 
 mkdir weights
 wget https://github.com/zylo117/Yet-Another-EfficientDet-Pytorch/releases/download/1.0/efficientdet-d1.pth -O weights/efficientdet-d1.pth
-
