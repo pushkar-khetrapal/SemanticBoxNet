@@ -23,6 +23,7 @@ I used Pre-trained weights from EfficientDet algorithm and train semantic head o
 
 ## Accuracy
 ### Bounding Boxes (Results are same as in EfficientDet-d1)
+
 efficientdet-d1
  Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.388
  Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.577
