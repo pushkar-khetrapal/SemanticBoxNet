@@ -57,7 +57,24 @@ Current accuracy of semantic is 66.1 mIoU. The accuracy is still improving need 
 ## How to use
 ### Training an Inference
 ```
+To train the network, you need to download CityScapes dataset (~10GB).
+git clone https://github.com/pushkar-khetrapal/SemanticBoxNet.git
+sh SemanticBoxNet/dependencies.sh
 
+To download the dataset, you just need to update CityScapes credentials in place of ####.
+## set credentials here
+wget --keep-session-cookies --save-cookies=cookies.txt --post-data 'username=####&password=####&submit=Login' https://www.cityscapes-dataset.com/login/
+wget --load-cookies cookies.txt --content-disposition https://www.cityscapes-dataset.com/file-handling/?packageID=1
+wget --load-cookies cookies.txt --content-disposition https://www.cityscapes-dataset.com/file-handling/?packageID=3
+unzip gtFine_trainvaltest.zip
+unzip leftImg8bit_trainvaltest.zip
+mkdir data
+mkdir data/cityscapes
+mv gtFine data/cityscapes
+mv leftImg8bit data/cityscapes
+git clone https://github.com/mcordts/cityscapesScripts.git
+
+python train_sembox.py
 
 
 ```
