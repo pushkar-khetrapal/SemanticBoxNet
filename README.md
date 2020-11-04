@@ -27,7 +27,7 @@ I used Pre-trained weights from EfficientDet algorithm and train semantic head o
 
 | efficientdet-d1 |   
 | ------------- |
-
+| SF            | 0  |  19 | 1900 |
 | Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.388| 
 | Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.577| 
 | Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.413| 
