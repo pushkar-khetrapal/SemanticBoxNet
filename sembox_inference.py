@@ -14,7 +14,7 @@ def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
 
-def box(preds, imgs, imshow=True, imwrite=True):
+def box(preds, imgs, color_list, obj_list, imshow=False, imwrite=False):
     for i in range(len(imgs)):
         if len(preds[i]['rois']) == 0:
             continue
@@ -33,7 +33,7 @@ def box(preds, imgs, imshow=True, imwrite=True):
 def inference():
     compound_coef = 0
     force_input_size = None  # set None to use default size
-    img_path = '/test/original_img.jpg'
+    img_path = 'test/original_img.jpg'
     
     # replace this part with your project's anchor config
     anchor_ratios = [(1.0, 1.0), (1.4, 0.7), (0.7, 1.4)]
@@ -75,7 +75,7 @@ def inference():
     model = EfficientDet_semanticBackbone(compound_coef=1, num_classes=len(obj_list),
                                 ratios=anchor_ratios, scales=anchor_scales)
 
-    model.load_state_dict(torch.load(f'/model_weight/model_1_epoch_80.pth'))
+    model.load_state_dict(torch.load('model_weight/model_1_epoch_80.pth'))
 
     if use_cuda:
         model = model.cuda()
@@ -92,7 +92,7 @@ def inference():
                         threshold, iou_threshold)
 
     out = invert_affine(framed_metas, out)
-    out = box(out, ori_imgs, imshow=False, imwrite=False)
+    out = box(out, ori_imgs, color_list, obj_list, imshow=False, imwrite=False)
 
     outputs = sem_out.data.cpu().numpy() # (shape: (batch_size, num_classes, img_h, img_w))
     pred_label_imgs = np.argmax(outputs, axis=1) # (shape: (batch_size, img_h, img_w))
@@ -104,7 +104,7 @@ def inference():
     pred_label_img_color = label_img_to_color(z)
     overlayed_img = 0.35*out + 0.65*pred_label_img_color
 
-    flag = cv2.imwrite(f'/test/semantic_img_1.jpg', overlayed_img)
+    flag = cv2.imwrite('test/semantic_img_1.jpg', overlayed_img)
     return flag
 if __name__ == "__main__":
     flag = inference()

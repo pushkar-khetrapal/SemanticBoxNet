@@ -1,4 +1,3 @@
-git clone https://github.com/pushkar-khetrapal/EfficientDet_Panoptic.git
 pip install torch==1.4.0 torchvision==0.5.0 pycocotools numpy==1.16.0 opencv-python tqdm tensorboard tensorboardX pyyaml webcolors matplotlib
 cd EfficientDet_Panoptic
 
