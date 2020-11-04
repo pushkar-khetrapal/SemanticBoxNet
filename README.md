@@ -2,7 +2,7 @@
 
 The SemanticBoxNet is a Deep Learning Model which predicts semantic mask and bounding boxes in a single Network. The Architecture contains two heads over a single backbone. The aim of this algorithm is to improve Panoptic Segmentation for realtime. Usually total parameters of Panoptic Segmentation is about 50-70 Million. This algorithm contains 12.5 Million parameters. For inference, since the size of this Architecture is small we can increase batch size to 8 or 16 to increase the speed in same memory usage.
 
-## How to Use
+## Architecture
 
 ![](/media/architecture_sem.jpg)
 
@@ -10,6 +10,32 @@ This project is extension of [EfficientDet](https://github.com/zylo117/Yet-Anoth
 The proposed semantic segmentation head consists of three components, each aimed at targeting one of the critical requirements. First, at large-scale, the network should have the ability to capture fine features efficiently. The second requirement is that at small-scale, the network should be able to capture long-range context. We employ a modified DPC module in our semantic head. The third and final requirement for the semantic head is that it should be able to mitigate the mismatch between largescale and small-scale features while performing feature aggregation. To this end, we employ our Mismatch Correction Module (MC) that correlates the small-scale features with respect to large-scale features. After every block the bilinear upsampling is used to upsample the size by factor of 2. As shown in figure below, all the output from DPC and LSPE were concatenated into a single big array. Further passing through set of convolutional layers then upsample it by 2. Last convolutional layer have 20 output channels for CityScapes classes. This architecture is design for 1024x2048 frames.
 
 ![](/media/sem_arch.jpg)
+
+## To Do List
+
+1. Training about 300 epoches.
+2. Generate Instance mask from semantic segmentation and bounding boxes.
+3. Panoptic Fusion.
+4. Optimizing it further with Nvidia TensorRT.
+
+## Training
+I used Pre-trained weights from EfficientDet algorithm and train semantic head only. I trained it for 80 epoches, about 53 hours on Google Colab(one, k-80 GPU) on CityScapes dataset till now. The accuracy is still improving need long training to get good results. Current accuracy of semantic is 66.1 mIoU.
+
+## Outputs
+
+<p float="left">
+  <img src="/media/original_img.jpg" width="32%" />
+  <img src="/media/original_img1.jpg" width="32%" />
+  <img src="/media/original_img2.jpg" width="32%" />
+  <img src="/media/original_img3.jpg" width="32%" />
+</p>
+<img src="/media/semantic_img_12.jpg" width="96%">
+<img src="/media/semantic_img_13.jpg" width="96%">
+<img src="/media/semantic_img_14.jpg" width="96%">
+<img src="/media/semantic_img_15.jpg" width="96%">
+
+## How to use
+
 
 
 <!-- 
