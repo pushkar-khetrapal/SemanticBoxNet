@@ -55,7 +55,7 @@ Current accuracy of semantic is 66.1 mIoU. The accuracy is still improving need 
 </p>
 
 ## How to use
-### Training an Inference
+### Training and Inference
 ```
 To train the network, you need to download CityScapes dataset (~10GB).
 git clone https://github.com/pushkar-khetrapal/SemanticBoxNet.git
