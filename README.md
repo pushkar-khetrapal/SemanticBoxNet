@@ -73,6 +73,7 @@ mkdir data/cityscapes
 mv gtFine data/cityscapes
 mv leftImg8bit data/cityscapes
 git clone https://github.com/mcordts/cityscapesScripts.git
+python semantic_utils/preprocess_data.py
 
 python train_sembox.py
 
